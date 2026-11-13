@@ -1,4 +1,3 @@
-yaml
 # Publica el sitio en GitHub Pages cada vez que haces push a la rama main
 name: Desplegar en GitHub Pages
 
