@@ -5,6 +5,8 @@ eyebrow: /sobre-mi
 description: Ingeniera de Sistemas y Magíster en Ciberseguridad, con 17 años de experiencia en docencia universitaria y formación profesional.
 ---
 
+<img class="perfil-foto" src="/img/claudia.webp" width="240" height="240" alt="Foto de Claudia Ximena Muñoz Ausecha" />
+
 Soy **Claudia Ximena Muñoz Ausecha**, ingeniera de sistemas y **magíster en Ciberseguridad**. Desde hace **17 años** me dedico a la docencia universitaria y a la formación profesional en los sectores público y privado, en pregrado, posgrado y formación para el trabajo, en modalidades presencial, virtual y a distancia.
 
 Mi propósito es **acercar la ciberseguridad y las redes** a estudiantes y profesionales de distintas regiones del país, con un enfoque práctico, basado en laboratorios y siempre ético.

@@ -106,3 +106,9 @@ pre[class*='language-'] { background: #0f1620; color: #d7e0ea; }
   .ioc dd { margin: 0; }
   .ioc .hash { font-family: var(--font-mono); word-break: break-all; color: var(--accent); }
 .prose .role { color: var(--muted); font-size: .9rem; margin: -.6rem 0 .5rem; font-family: var(--font-mono); }
+
+/* Foto de perfil */
+.perfil-foto { float: right; width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin: 0 0 1.2rem 1.8rem; border: 3px solid var(--accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 15%, transparent); }
+@media (max-width: 640px) { .perfil-foto { float: none; display: block; margin: 0 auto 1.5rem; width: 160px; height: 160px; } }
+.avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: block; margin-bottom: 1.2rem; }
+.avatar-link:hover { text-decoration: none; }
