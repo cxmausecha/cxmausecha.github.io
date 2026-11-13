@@ -1,0 +1,23 @@
+---
+import { render } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import { getLabs } from '../../utils';
+
+export async function getStaticPaths() {
+  const labs = await getLabs();
+  return labs.map((lab) => ({ params: { slug: lab.id }, props: { lab } }));
+}
+const { lab } = Astro.props;
+const { Content, headings } = await render(lab);
+const d = lab.data;
+---
+<Article title={d.title} description={d.description} pubDate={d.pubDate} categoria={d.categoria}
+  eyebrow={`Laboratorio ${String(d.numero).padStart(2, '0')}`} meta={`${d.nivel} · ${d.duracion}`} headings={headings}>
+  {d.requisitos.length > 0 && (
+    <section class="req">
+      <h2 id="requisitos">Requisitos</h2>
+      <ul>{d.requisitos.map((r) => <li>{r}</li>)}</ul>
+    </section>
+  )}
+  <Content />
+</Article>

@@ -1,0 +1,108 @@
+:root {
+  --bg: #0b0f14;
+  --bg-2: #111821;
+  --bg-3: #17212c;
+  --line: #233142;
+  --text: #d7e0ea;
+  --muted: #8a9bb0;
+  --accent: #3ddc97;      /* verde terminal */
+  --accent-2: #4cc9f0;    /* cian */
+  --warn: #ffb454;
+  --danger: #ff6b6b;
+  --radius: 10px;
+  --maxw: 1080px;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+main { flex: 1; }
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img { max-width: 100%; height: auto; }
+h1, h2, h3, h4 { line-height: 1.25; color: #fff; letter-spacing: -0.01em; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 .5rem; }
+h2 { font-size: 1.55rem; margin-top: 2.4rem; }
+h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+code { font-family: var(--font-mono); font-size: .9em; }
+:not(pre) > code { background: var(--bg-3); border: 1px solid var(--line); padding: .1em .35em; border-radius: 5px; }
+pre { padding: 1rem 1.2rem; border-radius: var(--radius); border: 1px solid var(--line); overflow-x: auto; font-size: .88rem; line-height: 1.55; }
+blockquote { margin: 1.5rem 0; padding: .3rem 1.2rem; border-left: 3px solid var(--accent); color: var(--muted); background: var(--bg-2); border-radius: 0 var(--radius) var(--radius) 0; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: .55rem .8rem; text-align: left; }
+th { background: var(--bg-3); color: #fff; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+.narrow { max-width: 760px; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); }
+.prompt::before { content: '$ '; color: var(--accent); }
+.eyebrow { font-family: var(--font-mono); color: var(--accent); font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; }
+
+.btn { display: inline-block; padding: .6rem 1.1rem; border-radius: 8px; font-weight: 600; border: 1px solid var(--accent); color: var(--bg); background: var(--accent); }
+.btn:hover { text-decoration: none; filter: brightness(1.1); }
+.btn.ghost { background: transparent; color: var(--accent); }
+
+.tag { display: inline-block; font-family: var(--font-mono); font-size: .75rem; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--bg-2); }
+.tag.cat { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+
+.grid { display: grid; gap: 1.1rem; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.3rem; transition: border-color .15s, transform .15s; display: flex; flex-direction: column; gap: .5rem; }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); transform: translateY(-2px); }
+.card h3 { margin: 0; font-size: 1.1rem; }
+.card h3 a { color: #fff; }
+.card p { margin: 0; color: var(--muted); font-size: .95rem; }
+.card .meta { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; font-size: .8rem; color: var(--muted); }
+
+.section { padding: 3rem 0; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.section-head h2 { margin: 0; }
+
+.prose { max-width: 760px; }
+.prose p, .prose li { color: var(--text); }
+.prose li + li { margin-top: .3rem; }
+.page-head { padding: 3rem 0 1.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+.page-head p { color: var(--muted); margin: .3rem 0 0; max-width: 680px; }
+
+/* Resaltado de sintaxis (Prism) — tema oscuro */
+pre[class*='language-'] { background: #0f1620; color: #d7e0ea; }
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6b7d93; font-style: italic; }
+.token.punctuation { color: #9fb0c3; }
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol { color: #ffb454; }
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin { color: #3ddc97; }
+.token.operator, .token.entity, .token.url, .token.variable { color: #4cc9f0; }
+.token.atrule, .token.attr-value, .token.keyword { color: #c792ea; }
+.token.function, .token.class-name { color: #82aaff; }
+.token.regex, .token.important { color: #ff6b6b; }
+
+/* Componentes usados dentro de MDX (en CSS global para cumplir la CSP) */
+  .callout { --c: var(--accent-2); margin: 1.6rem 0; padding: .9rem 1.1rem; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); border-left: 4px solid var(--c); border-radius: var(--radius); background: color-mix(in srgb, var(--c) 7%, var(--bg-2)); }
+  .callout.advertencia { --c: var(--warn); }
+  .callout.peligro { --c: var(--danger); }
+  .callout.tip { --c: var(--accent); }
+  .callout .title { margin: 0 0 .3rem; font-weight: 700; color: var(--c); font-size: .95rem; }
+  .callout .body p { margin: .3rem 0; }
+
+  .ioc { margin: 1.6rem 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); overflow: hidden; }
+  .ioc figcaption { padding: .6rem 1rem; background: var(--bg-3); border-bottom: 1px solid var(--line); font-weight: 600; color: #fff; }
+  .ioc .badge { font-family: var(--font-mono); font-size: .72rem; background: var(--danger); color: var(--bg); padding: .1rem .45rem; border-radius: 4px; margin-right: .4rem; }
+  .ioc dl { display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1rem; margin: 0; padding: .8rem 1rem; font-size: .9rem; }
+  .ioc dt { color: var(--muted); }
+  .ioc dd { margin: 0; }
+  .ioc .hash { font-family: var(--font-mono); word-break: break-all; color: var(--accent); }
+.prose .role { color: var(--muted); font-size: .9rem; margin: -.6rem 0 .5rem; font-family: var(--font-mono); }

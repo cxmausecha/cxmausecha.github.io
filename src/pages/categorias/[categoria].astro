@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, getLabs, readingTime } from '../../utils';
+import { CATEGORIAS } from '../../content.config';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const labs = await getLabs();
+  return Object.keys(CATEGORIAS).map((categoria) => ({
+    params: { categoria },
+    props: {
+      posts: posts.filter((p) => p.data.categoria === categoria),
+      labs: labs.filter((l) => l.data.categoria === categoria),
+    },
+  }));
+}
+const { categoria } = Astro.params as { categoria: keyof typeof CATEGORIAS };
+const { posts, labs } = Astro.props;
+const name = CATEGORIAS[categoria];
+---
+<Base title={name} description={`Entradas y laboratorios sobre ${name.toLowerCase()}.`}>
+  <div class="container">
+    <header class="page-head">
+      <p class="eyebrow">/categorias/{categoria}</p>
+      <h1>{name}</h1>
+      <nav class="filters" aria-label="Categorías">
+        <a class="tag" href="/blog/">Todas</a>
+        {Object.entries(CATEGORIAS).map(([slug, n]) => slug === categoria ? <span class="tag cat">{n}</span> : <a class="tag" href={`/categorias/${slug}/`}>{n}</a>)}
+      </nav>
+    </header>
+    {posts.length === 0 && labs.length === 0 && <p class="muted">Pronto habrá contenido en esta categoría.</p>}
+    <div class="grid cols-2">
+      {posts.map((p) => <PostCard href={`/blog/${p.id}/`} title={p.data.title} description={p.data.description} date={p.data.pubDate} categoria={p.data.categoria} extra={readingTime(p.body)} />)}
+      {labs.map((l) => <PostCard href={`/laboratorios/${l.id}/`} title={`Lab ${String(l.data.numero).padStart(2, '0')} · ${l.data.title}`} description={l.data.description} date={l.data.pubDate} categoria={l.data.categoria} extra={`${l.data.nivel} · ${l.data.duracion}`} />)}
+    </div>
+  </div>
+</Base>
+<style>.filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.2rem; }</style>

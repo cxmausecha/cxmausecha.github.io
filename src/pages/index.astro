@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts, getLabs, readingTime } from '../utils';
+import { CATEGORIAS } from '../content.config';
+
+const posts = (await getPosts()).slice(0, 4);
+const labs = (await getLabs()).slice(0, 2);
+const areas = [
+  { slug: 'hacking-etico', icon: '>_', text: 'Pruebas de penetración, metodologías (PTES, OWASP) y laboratorios controlados.' },
+  { slug: 'analisis-de-malware', icon: '{ }', text: 'Análisis estático y dinámico, IOC, reglas YARA e ingeniería inversa básica.' },
+  { slug: 'auditoria-informatica', icon: '✓', text: 'Controles, marcos de referencia (ISO 27001, COBIT) y evidencias de auditoría.' },
+  { slug: 'seguridad-en-redes', icon: '⇄', text: 'Captura y análisis de tráfico, segmentación, firewalls e IDS.' },
+] as const;
+---
+<Base>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Magíster en Ciberseguridad · Docente universitaria</p>
+      <h1>Aprende ciberseguridad <span class="hl">haciendo</span>, con ética y método.</h1>
+      <p class="lead">Soy Claudia Ximena Muñoz Ausecha, ingeniera de sistemas y magíster en Ciberseguridad, con 17 años enseñando en la Universidad del Valle, el SENA y otras instituciones. Aquí comparto apuntes de clase, análisis técnicos y laboratorios paso a paso sobre hacking ético, análisis de malware, auditoría informática y seguridad en redes.</p>
+      <div class="cta">
+        <a class="btn" href="/blog/">Leer el blog</a>
+        <a class="btn ghost" href="/laboratorios/">Ver laboratorios</a>
+      </div>
+      <pre class="term" aria-hidden="true"><code><span class="p">$</span> whoami
+docente · magister_ciberseguridad · 17_años_enseñando
+<span class="p">$</span> cat intereses.txt
+hacking_etico  analisis_malware  auditoria  redes
+<span class="p">$</span> ./aprender --con-etica<span class="blink">▌</span></code></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><h2>Líneas temáticas</h2></div>
+      <div class="grid cols-4">
+        {areas.map((a) => (
+          <a class="card area" href={`/categorias/${a.slug}/`}>
+            <span class="icon mono">{a.icon}</span>
+            <h3>{CATEGORIAS[a.slug]}</h3>
+            <p>{a.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><h2>Últimas entradas</h2><a href="/blog/">Ver todas →</a></div>
+      <div class="grid cols-2">
+        {posts.map((p) => (
+          <PostCard href={`/blog/${p.id}/`} title={p.data.title} description={p.data.description} date={p.data.pubDate} categoria={p.data.categoria} extra={readingTime(p.body)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {labs.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Laboratorios</h2><a href="/laboratorios/">Ver todos →</a></div>
+        <div class="grid cols-2">
+          {labs.map((l) => (
+            <PostCard href={`/laboratorios/${l.id}/`} title={`Lab ${String(l.data.numero).padStart(2, '0')} · ${l.data.title}`} description={l.data.description} date={l.data.pubDate} categoria={l.data.categoria} extra={`${l.data.nivel} · ${l.data.duracion}`} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>
+<style>
+  .hero { padding: 4.5rem 0 2rem; background: radial-gradient(800px 380px at 85% -10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%); }
+  .hl { color: var(--accent); }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; }
+  .cta { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1.6rem 0 2.2rem; }
+  .term { background: var(--bg-2); max-width: 560px; color: var(--text); }
+  .term .p { color: var(--accent); }
+  .blink { color: var(--accent); animation: b 1s steps(1) infinite; }
+  @keyframes b { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .blink { animation: none; } }
+  .area { color: inherit; }
+  .area:hover { text-decoration: none; }
+  .icon { color: var(--accent); font-size: 1.1rem; font-weight: 700; }
+</style>

@@ -1,0 +1,15 @@
+---
+import { CATEGORIAS } from '../content.config';
+import FormattedDate from './FormattedDate.astro';
+interface Props { href: string; title: string; description: string; date: Date; categoria: keyof typeof CATEGORIAS; extra?: string; }
+const { href, title, description, date, categoria, extra } = Astro.props;
+---
+<article class="card">
+  <div class="meta">
+    <a class="tag cat" href={`/categorias/${categoria}/`}>{CATEGORIAS[categoria]}</a>
+    <FormattedDate date={date} />
+    {extra && <span>· {extra}</span>}
+  </div>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+</article>

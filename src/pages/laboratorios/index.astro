@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Callout from '../../components/Callout.astro';
+import { getLabs } from '../../utils';
+const labs = await getLabs();
+---
+<Base title="Laboratorios" description="Prácticas guiadas de ciberseguridad en entornos controlados.">
+  <div class="container">
+    <header class="page-head">
+      <p class="eyebrow">/laboratorios</p>
+      <h1>Laboratorios</h1>
+      <p>Prácticas guiadas, numeradas y con objetivos claros. Todas se hacen en máquinas virtuales aisladas y sobre sistemas diseñados para practicar.</p>
+    </header>
+    <div class="prose">
+      <Callout tipo="tip" titulo="Antes de empezar">
+        <p>Monta primero tu entorno con la guía <a href="/blog/laboratorio-seguro-hacking-etico/">Cómo montar un laboratorio seguro</a>.</p>
+      </Callout>
+    </div>
+    <div class="grid cols-2">
+      {labs.map((l) => (
+        <PostCard href={`/laboratorios/${l.id}/`} title={`Lab ${String(l.data.numero).padStart(2, '0')} · ${l.data.title}`} description={l.data.description} date={l.data.pubDate} categoria={l.data.categoria} extra={`${l.data.nivel} · ${l.data.duracion}`} />
+      ))}
+    </div>
+  </div>
+</Base>

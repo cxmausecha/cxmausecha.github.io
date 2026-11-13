@@ -1,0 +1,25 @@
+---
+/**
+ * Tarjeta de Indicadores de Compromiso (IOC).
+ * Publica SOLO hashes y metadatos; nunca subas la muestra al sitio.
+ */
+interface Props {
+  nombre: string;
+  familia?: string;
+  tipo?: string;
+  sha256: string;
+  md5?: string;
+  fuente?: string; // p. ej. enlace a MalwareBazaar / VirusTotal
+}
+const { nombre, familia, tipo, sha256, md5, fuente } = Astro.props;
+---
+<figure class="ioc">
+  <figcaption><span class="badge">IOC</span> {nombre}</figcaption>
+  <dl>
+    {familia && (<><dt>Familia</dt><dd>{familia}</dd></>)}
+    {tipo && (<><dt>Tipo</dt><dd>{tipo}</dd></>)}
+    <dt>SHA-256</dt><dd class="hash">{sha256}</dd>
+    {md5 && (<><dt>MD5</dt><dd class="hash">{md5}</dd></>)}
+    {fuente && (<><dt>Referencia</dt><dd><a href={fuente} rel="noopener noreferrer nofollow">{new URL(fuente).hostname}</a></dd></>)}
+  </dl>
+</figure>

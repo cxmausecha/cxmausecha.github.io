@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="404 · No encontrado">
+  <div class="container nf">
+    <pre><code><span class="p">$</span> curl -I {Astro.url.pathname}
+HTTP/2 404 Not Found</code></pre>
+    <h1>Esta página no existe</h1>
+    <p class="muted">Puede que el enlace sea antiguo (quizás del blog anterior). Prueba con el <a href="/blog/">blog</a> o la <a href="/">página de inicio</a>.</p>
+  </div>
+</Base>
+<style>.nf { padding: 5rem 1.25rem; } .p { color: var(--accent); }</style>

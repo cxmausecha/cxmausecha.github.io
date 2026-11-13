@@ -1,0 +1,10 @@
+<!--
+  REDIRECCIÓN DEL BLOG ANTIGUO (tec-progsw.blogspot.com) AL SITIO NUEVO
+  Pega este bloque en Blogger → Tema → (▼ junto a "Personalizar") → Editar HTML,
+  justo DEBAJO de la etiqueta <head> y guarda.
+-->
+<link href='https://cxmausecha.github.io/' rel='canonical'/>
+<meta content='0; url=https://cxmausecha.github.io/' http-equiv='refresh'/>
+<script>//<![CDATA[
+  window.location.replace('https://cxmausecha.github.io/');
+//]]></script>

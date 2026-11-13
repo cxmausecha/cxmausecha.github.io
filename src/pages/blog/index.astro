@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, readingTime } from '../../utils';
+import { CATEGORIAS } from '../../content.config';
+const posts = await getPosts();
+---
+<Base title="Blog" description="Artículos sobre hacking ético, análisis de malware, auditoría informática y seguridad en redes.">
+  <div class="container">
+    <header class="page-head">
+      <p class="eyebrow">/blog</p>
+      <h1>Blog</h1>
+      <p>Apuntes, análisis y reflexiones desde el aula y el laboratorio.</p>
+      <nav class="filters" aria-label="Categorías">
+        <span class="tag cat">Todas</span>
+        {Object.entries(CATEGORIAS).map(([slug, name]) => <a class="tag" href={`/categorias/${slug}/`}>{name}</a>)}
+      </nav>
+    </header>
+    <div class="grid cols-2">
+      {posts.map((p) => (
+        <PostCard href={`/blog/${p.id}/`} title={p.data.title} description={p.data.description} date={p.data.pubDate} categoria={p.data.categoria} extra={readingTime(p.body)} />
+      ))}
+    </div>
+  </div>
+</Base>
+<style>.filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.2rem; }</style>

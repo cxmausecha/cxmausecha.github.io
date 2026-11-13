@@ -1,0 +1,24 @@
+---
+import { AUTHOR, SOCIAL } from '../consts';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container inner">
+    <p>© {year} {AUTHOR}. Contenido con fines educativos.</p>
+    <p class="links">
+      <a href="/aviso-etico/">Aviso ético y legal</a>
+      {SOCIAL.github && <a href={SOCIAL.github} rel="me noopener">GitHub</a>}
+      {SOCIAL.linkedin && <a href={SOCIAL.linkedin} rel="me noopener">LinkedIn</a>}
+      {SOCIAL.email && <a href={`mailto:${SOCIAL.email}`}>Escríbeme</a>}
+      <a href="/rss.xml">RSS</a>
+    </p>
+  </div>
+</footer>
+<style>
+  .site-footer { border-top: 1px solid var(--line); margin-top: 4rem; padding: 1.8rem 0; font-size: .88rem; color: var(--muted); }
+  .inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  p { margin: 0; }
+  .links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  a { color: var(--muted); }
+  a:hover { color: #fff; }
+</style>

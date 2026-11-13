@@ -1,0 +1,10 @@
+---
+interface Props { tipo?: 'nota' | 'advertencia' | 'peligro' | 'tip'; titulo?: string; }
+const { tipo = 'nota', titulo } = Astro.props;
+const defaults = { nota: 'Nota', advertencia: 'Advertencia', peligro: 'Peligro', tip: 'Consejo' };
+const icon = { nota: 'ℹ', advertencia: '⚠', peligro: '⛔', tip: '✓' };
+---
+<aside class={`callout ${tipo}`} role="note">
+  <p class="title"><span aria-hidden="true">{icon[tipo]}</span> {titulo ?? defaults[tipo]}</p>
+  <div class="body"><slot /></div>
+</aside>
