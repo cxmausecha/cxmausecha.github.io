@@ -8,8 +8,9 @@ const links = [
 ---
 <header class="site-header">
   <div class="container bar">
-    <a class="brand mono" href="/" aria-label="Inicio">
-      <span class="accent">cxm</span>@ausecha<span class="cursor">:~$</span>
+    <a class="brand" href="/" aria-label="Inicio: Claudia Muñoz Ausecha, Ciberseguridad">
+      <img src="/favicon.svg" width="40" height="40" alt="" />
+      <span class="brand-text"><b>Claudia Muñoz Ausecha</b><small>CIBERSEGURIDAD</small></span>
     </a>
     <nav aria-label="Principal">
       {links.map((l) => (
@@ -22,10 +23,13 @@ const links = [
 <style>
   .site-header { border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 88%, transparent); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
   .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
-  .brand { color: #fff; font-weight: 700; font-size: 1.05rem; }
+  .brand { display: flex; align-items: center; gap: .7rem; color: #fff; }
   .brand:hover { text-decoration: none; }
-  .accent { color: var(--accent); }
-  .cursor { color: var(--muted); }
+  .brand img { display: block; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-text b { font-size: 1.02rem; }
+  .brand-text small { font-family: var(--font-mono); color: var(--accent); font-size: .7rem; letter-spacing: .08em; }
+  .bar { padding-block: .5rem; }
   nav { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .95rem; }
   nav a { color: var(--muted); }
   nav a:hover, nav a[aria-current='page'] { color: #fff; text-decoration: none; }
